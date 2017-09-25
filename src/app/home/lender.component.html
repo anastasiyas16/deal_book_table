@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="portlet box green">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-comments"></i>Available </div>
+      </div>
+      <div class="portlet-body table-flex-body">
+        <input placeholder="Search..." [(ngModel)]="filter_investor" />
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">No Available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="title">Not interested & DQ Investors</div>
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">No Not Intrested</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="flex-footer buttons">
+          <tr>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active">Select All</label>
+            </td>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active">Move to Not-Interested</label>
+            </td>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active">Move to Interested</label>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="portlet box green">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-comments"></i>Selected </div>
+      </div>
+      <div class="portlet-body table-flex-body">
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">No Selected</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="flex-footer buttons">
+          <tr>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active">Add to List</label>
+            </td>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active">Upload</label>
+            </td>
+            <td width=33%>
+              <label class="btn grey-salsa btn-sm active" routerLink="/home">Done</label>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<datalist id="contact">
+  <option *ngFor="let contact of primary_info.contact">{{contact}}</option>
+</datalist>
+<datalist id="location">
+  <option *ngFor="let location of primary_info.location">{{location}}</option>
+</datalist>
