@@ -1,23 +1,12 @@
 <header class="container">
-  <a [href]="baqend">
-    <img [src]="angularbaqendLogo" style="max-width: 400px; margin: auto; display: block">
-  </a>
+  <a routerLink="/home" routerLinkActive="active">HOME</a>
+  <a routerLink="/lender-select" routerLinkActive="active">Lender Select</a>
 </header>
 
-<nav class="container">
-  <ul class="nav nav-pills">
-    <li>
-      <a [routerLink]=" ['./signup'] " routerLinkActive="active">Signup</a>
-    </li>
-    <li>
-      <a [routerLink]=" ['./chats'] " routerLinkActive="active">Chats</a>
-    </li>
-  </ul>
-</nav>
 <main class="container">
   <router-outlet></router-outlet>
 </main>
 
 <footer class="container">
-  <span>Angular + Baqend by <a [href]="baqend">@Baqendcom</a></span>
+  <span>Deal Book Building - CopyRight @2017</span>
 </footer>

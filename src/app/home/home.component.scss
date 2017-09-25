@@ -1,0 +1,47 @@
+* {
+  transition: all 0.5s;
+}
+
+.table-flex-body.table-min,
+.table-primary-body.table-min,
+.table-chart-body.table-min {
+  padding: 0px 15px !important;
+  .table-scrollable {
+    display: none;
+  }
+}
+
+.table-scrollable {
+  margin: 0 !important;
+}
+
+.portlet-body table tr th,
+.portlet-body table tr td {
+  text-align: center;
+  position: relative;
+  >div>input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    box-shadow: 0 0 5px green;
+  }
+}
+
+.flex-footer {
+  width: 100%;
+  margin-top: 10px;
+  td {
+    text-align: left !important;
+  }
+  .button {
+    text-align: right !important;
+  }
+}
+
+.table-min .flex-footer {
+  display: none;
+}

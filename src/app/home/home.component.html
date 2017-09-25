@@ -1,0 +1,263 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="portlet box green">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-comments"></i>Flex History </div>
+        <div class="tools">
+          <a class="collapse table-chart" data-original-title="" title=""> </a>
+          <a href="#portlet-config" data-toggle="modal" class="config hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="reload hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="remove hide" data-original-title="" title=""> </a>
+        </div>
+      </div>
+      <div class="portlet-body table-chart-body">
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th>Graph</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="portlet box green">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-comments"></i>Flex History </div>
+        <div class="tools">
+          <a class="collapse table-flex" data-original-title="" title=""> </a>
+          <a href="#portlet-config" data-toggle="modal" class="config hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="reload hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="remove hide" data-original-title="" title=""> </a>
+        </div>
+      </div>
+      <div class="portlet-body table-flex-body">
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Base</th>
+                <th>Spread %</th>
+                <th>OID</th>
+                <th>Upfront fee</th>
+                <th>Effective Spread</th>
+                <th>Yield</th>
+                <th>Amount (mln)</th>
+                <th>Int. Amt (mln)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>8/10/17 9:07 AM</td>
+                <td>Libor</td>
+                <td>3</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>8/10/17 9:07 AM</td>
+                <td>Libor</td>
+                <td>3</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>8/10/17 9:07 AM</td>
+                <td>Libor</td>
+                <td>3</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>600</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="flex-footer">
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="button">
+              <label class="btn grey-salsa btn-sm active">Flex</label>
+            </td>
+          </tr>
+          <tr>
+            <td>* Effective Spread=Avg. spread + (Avg. OID/4)</td>
+            <td>* Yield=LIBOR + Effective Spread</td>
+            <td class="button"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="portlet box green">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-comments"></i>Primary </div>
+        <div class="tools">
+          <a class="collapse table-primary" data-original-title="" title=""> </a>
+          <a href="#portlet-config" data-toggle="modal" class="config hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="reload hide" data-original-title="" title=""> </a>
+          <a href="javascript:;" class="remove hide" data-original-title="" title=""> </a>
+        </div>
+      </div>
+      <div class="portlet-body table-primary-body">
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <th colspan="7"></th>
+                <th colspan="6">Interested</th>
+              </tr>
+              <tr>
+                <th width=80px>Action</th>
+                <th>Investor</th>
+                <th>Contact</th>
+                <th>Location</th>
+                <th>Assigned</th>
+                <th>Status</th>
+                <th>T/P</th>
+                <!-- Interested -->
+                <th>Amount<br>>mln)</th>
+                <th>Spread</th>
+                <th>Upfront<br>fee</th>
+                <th>OID</th>
+                <th>Notes</th>
+                <th>Last Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let primary of primary_list; let i = index" ngClass="primary_{{i}}">
+                <td class="table-action">
+                  <a [hidden]="primary.is_edit || primary.is_add" (click)="primary_add(i)" class="btn btn-outline btn-sm purple"><i class="fa fa-plus-square"></i></a>
+                  <a [hidden]="primary.is_edit || primary.is_add" (click)="primary_edit(i, primary)" class="btn btn-outline btn-sm purple"><i class="fa fa-pencil-square"></i></a>
+                  <a [hidden]="primary.is_edit || primary.is_add" (click)="primary_remove(i)" class="btn btn-outline btn-sm purple"><i class="fa fa-trash"></i></a>
+                  <a [hidden]="!primary.is_edit && !primary.is_add" (click)="primary_save(i, primary)" class="btn btn-outline btn-sm purple"><i class="fa fa-floppy-o"></i></a>
+                  <a [hidden]="!primary.is_edit && !primary.is_add" (click)="primary_cancel(i, primary)" class="btn btn-outline btn-sm purple"><i class="fa fa-window-close"></i></a>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_add"><input [(ngModel)]="primary.investor_edit" list="investors"/></div>
+                  <div [hidden]="primary.is_add">{{primary.investor}}</div>
+                  <datalist id="investors">
+                    <option *ngFor="let investor of primary_info.investor">{{investor}}</option>
+                  </datalist>
+                  <datalist id="contact">
+                    <option *ngFor="let contact of primary_info.contact">{{contact}}</option>
+                  </datalist>
+                  <datalist id="location">
+                    <option *ngFor="let location of primary_info.location">{{location}}</option>
+                  </datalist>
+                  <datalist id="assigned">
+                    <option *ngFor="let assigned of primary_info.assigned">{{assigned}}</option>
+                  </datalist>
+                  <datalist id="status">
+                    <option *ngFor="let status of primary_info.status">{{status}}</option>
+                  </datalist>
+                  <datalist id="t_p">
+                    <option *ngFor="let t_p of primary_info.t_p">{{t_p}}</option>
+                  </datalist>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_add"><input [(ngModel)]="primary.contact_edit" list="contact"/></div>
+                  <div [hidden]="primary.is_add">{{primary.contact}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_add"><input [(ngModel)]="primary.location_edit" list="location"/></div>
+                  <div [hidden]="primary.is_add">{{primary.location}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_add"><input [(ngModel)]="primary.assigned_edit" list="assigned"/></div>
+                  <div [hidden]="primary.is_add">{{primary.assigned}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.status_edit" list="status"/></div>
+                  <div [hidden]="primary.is_edit">{{primary.status}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.t_p_edit" list="t_p"/></div>
+                  <div [hidden]="primary.is_edit">{{primary.t_p}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.interested.amount_min_edit" /></div>
+                  <div [hidden]="primary.is_edit">{{primary.interested.amount_min}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.interested.spread_edit" /></div>
+                  <div [hidden]="primary.is_edit">{{primary.interested.spread}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.interested.upfront_fee_edit" /></div>
+                  <div [hidden]="primary.is_edit">{{primary.interested.upfront_fee}}</div>
+                </td>
+                <td>
+                  <div [hidden]="!primary.is_edit"><input [(ngModel)]="primary.interested.OID_edit" /></div>
+                  <div [hidden]="primary.is_edit">{{primary.interested.OID}}</div>
+                </td>
+                <td class="line-clamp">
+                  <div>{{primary.interested.notes}}</div>
+                </td>
+                <td class="line-clamp">
+                  <div>{{calculate_time(primary.interested.last_update)}}</div>
+                </td>
+              </tr>
+              <tr ngClass="total">
+                <td colspan="7">
+                </td>
+                <td>Total</td>
+                <td>Average</td>
+                <td>Average</td>
+                <td>Average</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr ngClass="total">
+                <td colspan="7">
+                </td>
+                <td>{{calculate_total('amount_min', false)}}</td>
+                <td>{{calculate_total('spread', true)}}</td>
+                <td>{{calculate_total('upfront_fee', true)}}</td>
+                <td>{{calculate_total('OID', true)}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="flex-footer">
+          <tr>
+            <td>
+              <label class="btn grey-salsa btn-sm active">Remove Investors</label>
+              <label class="btn grey-salsa btn-sm active">Add Multiple Investors</label>
+              <label class="btn grey-salsa btn-sm active">Add one Investor</label>
+            </td>
+            <td class="button">
+              <label class="btn grey-salsa btn-sm active">Save</label>
+              <label class="btn grey-salsa btn-sm active">Cancel</label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,7 @@
     "baqend": "^2.8.0",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.4.1",
+    "jquery": "^3.2.1",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.12"
   },
