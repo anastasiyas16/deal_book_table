@@ -43,6 +43,20 @@ export class HomeComponent implements OnInit {
         table_body.addClass('table-min');
       }
     });
+    jQuery('a.expand').click((e) => {
+      let className = jQuery(e.target)[0].className;
+      let table = jQuery(e.target)[0].className.split(' ').filter((c) => {return c.indexOf('table-') != -1})[0];
+      let table_body = jQuery('.' + table + '-body');
+      if (table_body.hasClass('table-min')) {
+        jQuery(e.target).removeClass('expand');
+        jQuery(e.target).addClass('collapse');
+        table_body.removeClass('table-min');
+      } else {
+        jQuery(e.target).addClass('expand');
+        jQuery(e.target).removeClass('collapse');
+        table_body.addClass('table-min');
+      }
+    });
 
     for (let i = 0; i < 5; i++) {
       let p = {investor: '', contact:'', location:'', assigned: '', status: '', t_p: '',
