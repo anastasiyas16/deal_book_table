@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Primary } from './primary.model';
+import { PrimaryService } from './primary.service';
 
 declare var jQuery: any;
 
@@ -11,24 +12,13 @@ declare var jQuery: any;
 })
 
 export class HomeComponent implements OnInit {
-
-  welcome: String;
   primary_list: Primary[] = [];
-  primary_info = {
-    investor : ["Fin Bank", "KKR", "JPMC"],
-    contact : ["John Doe", "Smith B", "Sky Vinney"],
-    location : ["NY", "NC", "AL"],
-    assigned : ["Jasson", "Ness", "John"],
-    status : ["Committed", "Interested", "Interest"],
-    t_p : ["T", "P"]
-  };
+  primary_info: any;
   
-  constructor(private router: Router) {
-    // 
+  constructor(private router: Router, private service: PrimaryService) {
   }
 
   ngOnInit() {
-    this.welcome = "You are welcome";
     jQuery('a.collapse').click((e) => {
       let className = jQuery(e.target)[0].className;
       let table = jQuery(e.target)[0].className.split(' ').filter((c) => {return c.indexOf('table-') != -1})[0];
@@ -58,28 +48,12 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    for (let i = 0; i < 5; i++) {
-      let p = {investor: '', contact:'', location:'', assigned: '', status: '', t_p: '',
-        interested: {
-          amount_min: '',
-          spread: '',
-          upfront_fee: '',
-          OID: '',
-          notes: '',
-          last_update: new Date()
-        },
-      };
-      for (let key in this.primary_info) {
-        let idx = parseInt((Math.random() * this.primary_info[key].length).toString());
-        p[key] = this.primary_info[key][idx];
-      }
-      p.interested.amount_min = (parseInt((Math.random() * 100 + 10).toString())).toString();
-      p.interested.spread = "2-" + (parseInt((Math.random() * 5).toString()) + 2);
-      p.interested.upfront_fee = "1-" + (parseInt((Math.random() * 3).toString()) + 2);
-      p.interested.OID = "1-3";
-      p.interested.notes = "Notes from " + p.contact;
-      this.primary_list.push(p);
-    }
+    this.primary_list = this.service.primary_list;
+    this.primary_info = this.service.primary_info;
+  }
+
+  available_investors () {
+    return this.service.available_investors();;
   }
 
   add_fields = ["investor", "contact", "location", "assigned"];

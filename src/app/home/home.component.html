@@ -3,7 +3,7 @@
     <div class="portlet box green">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-comments"></i>Graph </div>
+          <i class="fa fa-comments"></i>Analytics </div>
         <div class="tools">
           <a class="expand table-chart" data-original-title="" title=""> </a>
         </div>
@@ -29,7 +29,7 @@
     <div class="portlet box green">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-comments"></i>Analytics </div>
+          <i class="fa fa-comments"></i>Flex History </div>
         <div class="tools">
           <a class="expand table-flex" data-original-title="" title=""> </a>
         </div>
@@ -95,11 +95,6 @@
               <label class="btn grey-salsa btn-sm active">Flex</label>
             </td>
           </tr>
-          <tr>
-            <td>* Effective Spread=Avg. spread + (Avg. OID/4)</td>
-            <td>* Yield=LIBOR + Effective Spread</td>
-            <td class="button"></td>
-          </tr>
         </table>
       </div>
     </div>
@@ -154,7 +149,7 @@
                   <div [hidden]="!primary.is_add"><input [(ngModel)]="primary.investor_edit" list="investors"/></div>
                   <div [hidden]="primary.is_add">{{primary.investor}}</div>
                   <datalist id="investors">
-                    <option *ngFor="let investor of primary_info.investor">{{investor}}</option>
+                    <option *ngFor="let investor of available_investors()">{{investor}}</option>
                   </datalist>
                   <datalist id="contact">
                     <option *ngFor="let contact of primary_info.contact">{{contact}}</option>
@@ -241,9 +236,7 @@
         <table class="flex-footer">
           <tr>
             <td>
-              <label class="btn grey-salsa btn-sm active">Remove Investors</label>
               <label class="btn grey-salsa btn-sm active" routerLink="/lender-select">Add Multiple Investors</label>
-              <label class="btn grey-salsa btn-sm active">Add one Investor</label>
             </td>
             <td class="button">
               <label class="btn grey-salsa btn-sm active">Save</label>

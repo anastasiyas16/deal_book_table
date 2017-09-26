@@ -11,31 +11,29 @@
           <table class="table table-bordered table-striped table-condensed flip-content table-hover">
             <thead>
               <tr>
+                <td><input [(ngModel)]="table_select_all" (click)="select_all(0)" type="checkbox"/></td>
                 <th>Name</th>
                 <th>Contact</th>
                 <th>Location</th>
+                <th width=70px>
+                  <label [hidden]="!get_select(0)" class="btn grey-salsa btn-sm active margin-zero" (click)="add_sel_investors()"><i class="fa fa-hand-o-right"> </i></label>
+                  <label [hidden]="!get_select(0)" class="btn grey-salsa btn-sm active margin-zero" (click)="add_ND_investors()"><i class="fa fa-thumbs-down"> </i></label>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="3">No Available</td>
+              <tr *ngFor="let investor of available_investors(); let i = index">
+                <td><input [(ngModel)]="table_select[investor]" (click)="change_all(0)" type="checkbox"/></td>
+                <td>{{investor}}</td>
+                <td><div><input [(ngModel)]="table_contacts[investor]" list="contact"/></div></td>
+                <td><div><input [(ngModel)]="table_locations[investor]" list="location"/></div></td>
+                <td width=70px>
+                  <label class="btn grey-salsa btn-sm active margin-zero" (click)="add_sel_investor(investor)"><i class="fa fa-hand-o-right"> </i></label>
+                  <label class="btn grey-salsa btn-sm active margin-zero" (click)="add_ND_investor(investor)"><i class="fa fa-thumbs-down"> </i></label>
+                </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="title">Not interested & DQ Investors</div>
-        <div class="table-scrollable">
-          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="3">No Not Intrested</td>
+              <tr [hidden]="available_investors().length">
+                <td colspan="5">No Available</td>
               </tr>
             </tbody>
           </table>
@@ -43,13 +41,13 @@
         <table class="flex-footer buttons">
           <tr>
             <td width=33%>
-              <label class="btn grey-salsa btn-sm active">Select All</label>
+              <label class="btn grey-salsa btn-sm active" (click)="select_all(0, true);table_select_all=!table_select_all;"><i class="fa fa-{{table_select_all?'times':'check'}}"> </i> {{table_select_all?'Des':'S'}}elect All</label>
             </td>
             <td width=33%>
-              <label class="btn grey-salsa btn-sm active">Move to Not-Interested</label>
+              <label class="btn grey-salsa btn-sm active" (click)="add_ND_investors()"><i class="fa fa-trash-o"> </i> Move to Not-Interested</label>
             </td>
             <td width=33%>
-              <label class="btn grey-salsa btn-sm active">Move to Interested</label>
+              <label class="btn grey-salsa btn-sm active" (click)="restore_ND_investors()"><i class="fa fa-undo"> </i> Move to Interested</label>
             </td>
           </tr>
           <tr>
@@ -57,6 +55,36 @@
             <td></td>
           </tr>
         </table>
+        <div class="title">Not interested & DQ Investors</div>
+        <div class="table-scrollable">
+          <table class="table table-bordered table-striped table-condensed flip-content table-hover">
+            <thead>
+              <tr>
+                <td><input [(ngModel)]="table_nd_select_all" type="checkbox" (click)="select_all(1)"/></td>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Location</th>
+                <th width=41px>
+                  <label [hidden]="!get_select(1)" class="btn grey-salsa btn-sm active margin-zero" (click)="restore_ND_investors()"><i class="fa fa-thumbs-up"> </i></label>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let investor of get_ND_investors(); let i = index">
+                <td><input [(ngModel)]="table_nd_select[investor.investor]" (click)="change_all(1)" type="checkbox"/></td>
+                <td>{{investor.investor}}</td>
+                <td>{{investor.contact}}</td>
+                <td>{{investor.location}}</td>
+                <td width=41px>
+                  <label class="btn grey-salsa btn-sm active margin-zero" (click)="restore_ND_investor(investor.investor)"><i class="fa fa-thumbs-up"> </i></label>
+                </td>
+              </tr>
+              <tr [hidden]="get_ND_investors().length">
+                <td colspan="5">No Not Intrested</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -71,14 +99,27 @@
           <table class="table table-bordered table-striped table-condensed flip-content table-hover">
             <thead>
               <tr>
+                <th width=41px>
+                  <label [hidden]="!get_select(2)" class="btn grey-salsa btn-sm active margin-zero" (click)="restore_sel_investors()"><i class="fa fa-hand-o-left"> </i></label>
+                </th>
+                <td><input [(ngModel)]="table_sel_select_all" type="checkbox" (click)="select_all(2)"/></td>
                 <th>Name</th>
                 <th>Contact</th>
                 <th>Location</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="3">No Selected</td>
+              <tr *ngFor="let investor of get_sel_investors(); let i = index">
+                <td width=41px>
+                  <label class="btn grey-salsa btn-sm active margin-zero" (click)="restore_sel_investor(investor.investor)"><i class="fa fa-hand-o-left"> </i></label>
+                </td>
+                <td><input [(ngModel)]="table_sel_select[investor.investor]" (click)="change_all(2)" type="checkbox"/></td>
+                <td>{{investor.investor}}</td>
+                <td>{{investor.contact}}</td>
+                <td>{{investor.location}}</td>
+              </tr>
+              <tr [hidden]="get_sel_investors().length">
+                <td colspan="5">No Selected</td>
               </tr>
             </tbody>
           </table>
@@ -92,7 +133,7 @@
               <label class="btn grey-salsa btn-sm active">Upload</label>
             </td>
             <td width=33%>
-              <label class="btn grey-salsa btn-sm active" routerLink="/home">Done</label>
+              <label class="btn grey-salsa btn-sm active" (click)="done()">Done</label>
             </td>
           </tr>
           <tr>
