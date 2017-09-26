@@ -75,6 +75,7 @@ export class LenderComponent implements OnInit {
     let nds = [];
     nds.push(key);
     this.table_sel_select[key] = false;
+    this.table_sel_select_all = false;
     this.service.restore_sel_investors(nds);
   }
 
